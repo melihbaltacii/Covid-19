@@ -151,7 +151,7 @@ def coviddashboard(request):
 
     
     print("GELEN ÜLKEEEEEEEEEE"+str(country))
-    print("SAYİİİİİİİİİİİİ="+str(resultdata))
+    # print("SAYİİİİİİİİİİİİ="+str(resultdata))
    # Guest Data
     TotalResulDataNumber=len(resultdata)
     counter=0
@@ -159,7 +159,7 @@ def coviddashboard(request):
 
         if country=="United Kingdom":
             country="UK"
-        elif country=="Unıted States":
+        elif country=="United States":
             country="USA"
 
 
