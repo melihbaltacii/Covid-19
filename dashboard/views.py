@@ -12,19 +12,42 @@ from pip._vendor import requests
 def coviddashboard(request):
 
     #ip address
-    url = 'http://ip-api.com/json/'
-    r = requests.get(url).json()
-    IPAddress = r["query"]
-    city = r["city"]
-    country = r["country"]
-    # status = r["status"]
-    # country = r["country"]
-    # countryCode = r["countryCode"]
-    # region = r["region"]
-    # regionName = r["regionName"]
-    # lat = r["lat"]
-    # lon = r["lon"]
 
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    
+    
+    url = 'http://ip-api.com/json/'+ip+''
+    r = requests.get(url).json()
+    
+    # print("URLLLLLLLLLLLLLLLLLLL"+str(url))
+    
+    if r["status"]=="success":
+        
+        if r["query"] =="":
+            IPAddress = "Not Found"
+        else:
+            IPAddress = r["query"]
+    
+        
+        if r["city"] == null:
+            city="Not Found"
+        else:
+            city = r["city"]
+    
+        if r["country"] == "":
+            country = "Not Found"
+        else:
+            country = r["country"]
+    else:
+        IPAddress = "Not Found"
+        city = "Not Found"
+        country = "Not Found"
+            
+    
 
 
     # All Country
@@ -57,15 +80,21 @@ def coviddashboard(request):
     Code2Data=json.loads(code2)
 
 
-    # maps data
-
+    # maps data  and select Country List
     thumbnail_list = []
+    selectCountryList=[]
     for Code2name in Code2Data:
         for countryname in resultdata:
             if Code2name['name'] == countryname['country']:
                 mapList = {}
                 mapList['alphaCode'] = Code2name['alpha2Code']
-                mapList['value'] = countryname['totalCases']
+                mapList['value'] = countryname['totalCases'].replace(",","")
+
+                selectList={}
+                selectList["alphaCode"]=Code2name['alpha2Code']
+                selectList["countryName"]=countryname['country']
+
+                selectCountryList.append(selectList)
                 thumbnail_list.append(mapList)
 
 
@@ -74,24 +103,50 @@ def coviddashboard(request):
         if "USA"== countryname['country']:
             mapList = {}
             mapList['alphaCode'] = "US"
-            mapList['value'] = countryname['totalCases']
+            mapList['value'] = countryname['totalCases'].replace(",","")
+
+            selectList = {}
+            selectList["alphaCode"] = Code2name['alpha2Code']
+            selectList["countryName"] = countryname['country']
+
+            selectCountryList.append(selectList)
+
             thumbnail_list.append(mapList)
         if "Iran" == countryname['country']:
             mapList = {}
             mapList['alphaCode'] = "IR"
-            mapList['value'] = countryname['totalCases']
+            mapList['value'] = countryname['totalCases'].replace(",","")
+
+            selectList = {}
+            selectList["alphaCode"] = Code2name['alpha2Code']
+            selectList["countryName"] = countryname['country']
+
+            selectCountryList.append(selectList)
+
             thumbnail_list.append(mapList)
 
         if "Russia" == countryname['country']:
             mapList = {}
             mapList['alphaCode'] = "RU"
-            mapList['value'] = countryname['totalCases']
+            mapList['value'] = countryname['totalCases'].replace(",","")
+
+            selectList = {}
+            selectList["alphaCode"] = Code2name['alpha2Code']
+            selectList["countryName"] = countryname['country']
+
+            selectCountryList.append(selectList)
             thumbnail_list.append(mapList)
 
         if "Bolivia" == countryname['country']:
             mapList = {}
             mapList['alphaCode'] = "BO"
-            mapList['value'] = countryname['totalCases']
+            mapList['value'] = countryname['totalCases'].replace(",","")
+
+            selectList = {}
+            selectList["alphaCode"] = Code2name['alpha2Code']
+            selectList["countryName"] = countryname['country']
+
+            selectCountryList.append(selectList)
             thumbnail_list.append(mapList)
 
 
@@ -108,7 +163,14 @@ def coviddashboard(request):
             guestNewDeaths = result['newDeaths']
             guestTotalRecovered = result['totalRecovered']
             guestActiveCases = result['activeCases']
-
+        else:
+            guestCountry = ""
+            guestTotalCases = ""
+            guestNewCases = ""
+            guestTotalDeaths = ""
+            guestNewDeaths = ""
+            guestTotalRecovered = ""
+            guestActiveCases = ""
 
 
 
@@ -127,8 +189,12 @@ def coviddashboard(request):
         "guestActiveCases":guestActiveCases,
         "Code2Data":Code2Data,
         "thumbnail_list":thumbnail_list,
+        "selectCountryList":selectCountryList,
 
     }
+
+
+
 
     return render(request,'coviddashboard.html',context=context)
 

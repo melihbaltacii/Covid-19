@@ -1,8 +1,10 @@
 from covid19.settings.basesettings import *
 
+
+
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 #development database information
 DATABASES = {
@@ -14,6 +16,6 @@ DATABASES = {
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'staticfiles'),
+# )
