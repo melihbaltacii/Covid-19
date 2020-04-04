@@ -150,12 +150,12 @@ def coviddashboard(request):
 
 
     
+    print("GELEN ÜLKEEEEEEEEEE"+str(country))
     
    # Guest Data
     if country !="Not Found":
         for result in resultdata:
             if country==result['country']:
-                guestCountry=result['country']
                 
                 if result['totalCases']=="":
                     guestTotalCases="-"
@@ -205,7 +205,6 @@ def coviddashboard(request):
         "IPAddress": IPAddress,
         "city": city,
         "country":country,
-        "guestCountry":guestCountry,
         "guestTotalCases":guestTotalCases,
         "guestNewCases":guestNewCases,
         "guestTotalDeaths":guestTotalDeaths,
