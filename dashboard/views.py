@@ -156,6 +156,11 @@ def coviddashboard(request):
     TotalResulDataNumber=len(resultdata)
     counter=0
     if country !="Not Found":
+        if country=="United Kingdom":
+            country="United Kingdom"
+        elif country=="Unıted States"
+            country="USA"
+
         for result in resultdata:
             counter=counter+1
             if country==result['country']:
