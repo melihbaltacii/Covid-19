@@ -185,7 +185,7 @@
 											<i class="icon-user-cancel icon-3x text-danger-400"></i>
 										</div>
 										<div class="media-body text-right">
-											<h3 id="guestNewDeaths_id" class="font-weight-semibold mb-0">-</h3>
+											<h3 id="guestNewDeaths_id" class="font-weight-semibold mb-0">{{ guestNewDeaths }}</h3>
 											<span class="text-uppercase font-size-sm text-muted">New Deaths</span>
 										</div>
 
@@ -428,65 +428,6 @@
 
 
     <script>
-
-       window.onload = function () {
-
-                if("{{ guestTotalCases }}"==""){
-                    document.getElementById("guestTotalCases_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestTotalCases_id").innerText="{{ guestTotalCases }}";
-                }
-
-                if("{{ guestNewCases }}"==""){
-                    document.getElementById("guestNewCases_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestTotalCases_id").innerText="{{ guestNewCases }}";
-                }
-
-                if("{{ guestTotalDeaths }}"==""){
-                    document.getElementById("guestTotalDeaths_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestTotalDeaths_id").innerText="{{ guestTotalDeaths }}";
-                }
-
-
-                if("{{ guestNewDeaths }}"==""){
-                    document.getElementById("guestNewDeaths_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestNewDeaths_id").innerText="{{ guestNewDeaths }}";
-                }
-
-
-                if("{{ guestTotalRecovered }}"==""){
-                    document.getElementById("guestTotalRecovered_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestTotalRecovered_id").innerText="{{ guestTotalRecovered }}";
-                }
-
-
-                if("{{ guestActiveCases }}"==""){
-                    document.getElementById("guestActiveCases_id").innerText="-";
-                    document.getElementById("guest-country-info").style.display="block";
-                }
-                else{
-                    document.getElementById("guestActiveCases_id").innerText="{{ guestActiveCases }}";
-                }
-
-            };
-
-
-
-
 
         function CompareCountry() {
 

@@ -23,7 +23,7 @@ def coviddashboard(request):
     url = 'http://ip-api.com/json/'+ip+''
     r = requests.get(url).json()
     
-    # print("URLLLLLLLLLLLLLLLLLLL"+str(url))
+    print("URLLLLLLLLLLLLLLLLLLL"+str(url))
     
     if r["status"]=="success":
         
@@ -61,7 +61,7 @@ def coviddashboard(request):
     contruyAll=json.loads(data)
     resultdata=contruyAll["result"]
 
-
+    
 
 
     # All Data
@@ -149,28 +149,54 @@ def coviddashboard(request):
             thumbnail_list.append(mapList)
 
 
-
-
+    
+    
    # Guest Data
-    for result in resultdata:
-
-        if country== result['country']:
-            guestCountry=result['country']
-            guestTotalCases = result['totalCases']
-            guestNewCases = result['newCases']
-            guestTotalDeaths = result['totalDeaths']
-            guestNewDeaths = result['newDeaths']
-            guestTotalRecovered = result['totalRecovered']
-            guestActiveCases = result['activeCases']
-        else:
-            guestCountry = ""
-            guestTotalCases = ""
-            guestNewCases = ""
-            guestTotalDeaths = ""
-            guestNewDeaths = ""
-            guestTotalRecovered = ""
-            guestActiveCases = ""
-
+    if country !="Not Found":
+        for result in resultdata:
+            if country==result['country']:
+                guestCountry=result['country']
+                
+                if result['totalCases']=="":
+                    guestTotalCases="-"
+                else:
+                    guestTotalCases = result['totalCases']
+                
+                if result['newCases']=="":
+                    guestNewCases="-"
+                else:
+                    guestNewCases = result['newCases']
+                
+                if result['totalDeaths']=="":
+                    guestNewCases="-"
+                else:
+                    guestTotalDeaths = result['totalDeaths']
+                 
+                if result['newDeaths']=="":
+                    guestNewDeaths="-"
+                else:
+                    guestNewDeaths = result['newDeaths']
+                
+                
+                if result['totalRecovered']=="":
+                    guestTotalRecovered="-"
+                else:
+                    guestTotalRecovered = result['totalRecovered']
+                
+                
+                if result['activeCases']=="":
+                    guestActiveCases="-"
+                else:
+                    guestActiveCases = result['activeCases']
+                   
+    else:
+        guestCountry = "-"
+        guestTotalCases = "-"
+        guestNewCases = "-"
+        guestTotalDeaths = "-"
+        guestNewDeaths = "-"
+        guestTotalRecovered = "-"
+        guestActiveCases = "-"
 
 
     context={
