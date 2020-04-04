@@ -156,15 +156,16 @@ def coviddashboard(request):
     TotalResulDataNumber=len(resultdata)
     counter=0
     if country !="Not Found":
+
         if country=="United Kingdom":
             country="UK"
         elif country=="Unıted States":
             country="USA"
 
+
         for result in resultdata:
             counter=counter+1
             if country==result['country']:
-                
                 if result['totalCases']=="":
                     guestTotalCases="-"
                 else:
@@ -185,7 +186,7 @@ def coviddashboard(request):
                 else:
                     guestNewDeaths = result['newDeaths']
                 
-                
+
                 if result['totalRecovered']=="":
                     guestTotalRecovered="-"
                 else:
@@ -196,6 +197,9 @@ def coviddashboard(request):
                     guestActiveCases="-"
                 else:
                     guestActiveCases = result['activeCases']
+
+                break
+
             elif counter==TotalResulDataNumber:
                 guestTotalCases = "-"
                 guestNewCases = "-"
