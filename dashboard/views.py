@@ -33,7 +33,7 @@ def coviddashboard(request):
             IPAddress = r["query"]
     
         
-        if r["city"] == null:
+        if r["city"] == "":
             city="Not Found"
         else:
             city = r["city"]
