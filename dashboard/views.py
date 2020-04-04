@@ -32,9 +32,7 @@ def coviddashboard(request):
         else:
             IPAddress = r["query"]
             
-        # if r["city"] is None:
-        #     #city="Not Found
-        # else:
+        
             city = r["city"]
     
         if r["country"] == "":
