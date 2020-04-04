@@ -26,19 +26,11 @@ def coviddashboard(request):
     # print("URLLLLLLLLLLLLLLLLLLL"+str(url))
     
     if r["status"]=="success":
-        
-        if r["query"] =="":
-            IPAddress = "Not Found"
-        else:
-            IPAddress = r["query"]
+
+        IPAddress = r["query"]
+        city = r["city"]
+        country = r["country"]
             
-        
-            
-    
-        if r["country"] == "":
-            country = "Not Found"
-        else:
-            country = r["country"]
     else:
         IPAddress = "Not Found"
         city = "Not Found"
