@@ -158,7 +158,7 @@ def coviddashboard(request):
     if country !="Not Found":
         if country=="United Kingdom":
             country="United Kingdom"
-        elif country=="Unıted States"
+        elif country=="Unıted States":
             country="USA"
 
         for result in resultdata:
