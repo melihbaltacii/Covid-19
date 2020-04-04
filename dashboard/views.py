@@ -151,10 +151,13 @@ def coviddashboard(request):
 
     
     print("GELEN ÜLKEEEEEEEEEE"+str(country))
-    
+    print("SAYİİİİİİİİİİİİ="+str(len(resultdata)))
    # Guest Data
+    TotalResulDataNumber=len(resultdata)
+    counter=0
     if country !="Not Found":
         for result in resultdata:
+            counter=counter+1
             if country==result['country']:
                 
                 if result['totalCases']=="":
@@ -188,9 +191,15 @@ def coviddashboard(request):
                     guestActiveCases="-"
                 else:
                     guestActiveCases = result['activeCases']
+            elif counter==TotalResulDataNumber:
+                guestTotalCases = "-"
+                guestNewCases = "-"
+                guestTotalDeaths = "-"
+                guestNewDeaths = "-"
+                guestTotalRecovered = "-"
+                guestActiveCases = "-"
                    
     else:
-        guestCountry = "-"
         guestTotalCases = "-"
         guestNewCases = "-"
         guestTotalDeaths = "-"
