@@ -155,6 +155,7 @@ def coviddashboard(request):
    # Guest Data
     TotalResulDataNumber=len(resultdata)
     counter=0
+    info_text=""
     if country !="Not Found":
 
         if country=="United Kingdom":
@@ -168,33 +169,39 @@ def coviddashboard(request):
             if country==result['country']:
                 if result['totalCases']=="":
                     guestTotalCases="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestTotalCases = result['totalCases']
                 
                 if result['newCases']=="":
                     guestNewCases="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestNewCases = result['newCases']
                 
                 if result['totalDeaths']=="":
                     guestNewCases="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestTotalDeaths = result['totalDeaths']
                  
                 if result['newDeaths']=="":
                     guestNewDeaths="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestNewDeaths = result['newDeaths']
                 
 
                 if result['totalRecovered']=="":
                     guestTotalRecovered="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestTotalRecovered = result['totalRecovered']
                 
                 
                 if result['activeCases']=="":
                     guestActiveCases="-"
+                    info_text = "*Some data may not seen in the table above"
                 else:
                     guestActiveCases = result['activeCases']
 
@@ -207,6 +214,7 @@ def coviddashboard(request):
                 guestNewDeaths = "-"
                 guestTotalRecovered = "-"
                 guestActiveCases = "-"
+                info_text="*Some data may not seen in the table above"
                    
     else:
         guestTotalCases = "-"
@@ -215,6 +223,7 @@ def coviddashboard(request):
         guestNewDeaths = "-"
         guestTotalRecovered = "-"
         guestActiveCases = "-"
+        info_text = "*Some data may not seen in the table above"
 
 
     context={
@@ -232,6 +241,8 @@ def coviddashboard(request):
         "Code2Data":Code2Data,
         "thumbnail_list":thumbnail_list,
         "selectCountryList":selectCountryList,
+        "info_text":info_text,
+
 
     }
 
