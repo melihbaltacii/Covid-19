@@ -61,7 +61,6 @@ def coviddashboard(request):
     contruyAll=json.loads(data)
     resultdata=contruyAll["result"]
 
-    
 
 
     # All Data
@@ -139,6 +138,18 @@ def coviddashboard(request):
         if "Bolivia" == countryname['country']:
             mapList = {}
             mapList['alphaCode'] = "BO"
+            mapList['value'] = countryname['totalCases'].replace(",","")
+
+            selectList = {}
+            selectList["alphaCode"] = Code2name['alpha2Code']
+            selectList["countryName"] = countryname['country']
+
+            selectCountryList.append(selectList)
+            thumbnail_list.append(mapList)
+
+        if "UK" == countryname['country']:
+            mapList = {}
+            mapList['alphaCode'] = "GB"
             mapList['value'] = countryname['totalCases'].replace(",","")
 
             selectList = {}
