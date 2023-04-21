@@ -3,5 +3,5 @@ Django==2.2.11
 gunicorn==20.0.4
 jsonify==0.5
 pytz==2019.3
-sqlparse==0.3.1
+sqlparse==0.4.4
 static3==0.7.0
